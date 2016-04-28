@@ -1,0 +1,30 @@
+<!--places the editLatestItem.html in the main.html + adds the header.html to the file-->
+
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+	<!--here you can change the name, description and price
+	of an item. Then you can either save or cancel your input-->
+	<h1>DO you want to edit your latest Item?</h1>
+	<form action="#" method = "post">
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<input type ="text" maxlength="100" class="form-control" name="typed_name" value="{{find_item.name }}">
+			<label for="description">Description:</label>
+			<textarea class="form-control" maxlength="250" rows="3" name="description">{{find_item.description}}</textarea>
+			<label for="price">Price:</label>
+			<div class="input-group">
+				<div class="input-group-addon">$</div>
+				<input type ="text" maxlength="10" class="form-control" name="price" value="{{find_item.price}}">
+			</div>
+			<button type="submit" class="btn btn-default" id="submit" type="submit">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
+			</button>
+			<a href = '{{url_for('home')}}'>
+				<button type= "button" class="btn btn-default delete">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+				</button>
+			</a>
+		</div>
+	</form>
+{% endblock %}

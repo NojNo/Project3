@@ -1,0 +1,45 @@
+<!--places the newCategory.html in the main.html + adds the header.html to the file-->
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<!--here you can create a new category. just type in the name, 
+and confirm it with the send button-->
+<div class = "container">
+		<div class = "row">
+			<div class = "col-md-12">
+				<h1 class = "text-center">
+					New Category
+				</h1>
+			</div>
+		</div>
+		<div class = "row">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="name">	
+						<h5>
+							Name:
+						</h5>
+					</label>
+						<input type ="text" class="form-control" maxlength="100" name="typed_name">
+				</div>
+				<div class="padding-bottom">
+				</div>
+		</div>
+		<!--the send button-->
+		<div class = "row">
+				<div class = "col-md-6">
+				</div>
+				<div class = "col-md-6 text-right">
+					<button type="submit" class="btn btn-info btn-lg" id="Add_category" type="submit">  
+								
+					<span class="glyphicon glyphicon-send" id="Add_category" aria-hidden="true">
+					 </span>
+					  Create new Category
+					</button>
+				</div>
+			</form>
+		</div>
+</div>
+{% endblock %}
+
+

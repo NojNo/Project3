@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- add the relevant information into the header such as where
+		to find the style file or the fonts. The cool thing in here is, that Flask auto-searches in the static file, if it is placed in the same directory-->
+		<meta charset ="utf-8">
+		<meta http-equiv="X-UA-Compatible" content = "IE-edge">
+		<meta name = "viewport" content = "width = device-width, initial-scale=1">
+		<title>Category  - Project 3</title>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Signika:400,600,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+		<link rel= "stylesheet" src='//necolas.github.io/normalize.css/4.1.1/normalize.css'>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+	</head>
+	<body>
+		<!--by using expand the other templates will be placed in here-->
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!--places the editCategory.html in the main.html + adds the header.html to the file-->
+
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+
+			<h1>Edit {{find_category.category}}</h1>
+
+			<!--here you can type in the the new name of the category
+			and then save or cancel what you have typed in-->
+			<form action="{{ url_for('editCategory',category_id = find_category.id)}}" method = "post">
+				<div class="form-group">
+					<label for="typed_name">Name:</label>
+					<input type ="text" class="form-control" name="typed_name" value="{{find_category.category }}">
+					<div class="padding-bottom"></div>
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
+					</button>
+					<a href = '{{url_for('home')}}'>
+						<button type= "button" class="btn btn-default delete">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+						</button>
+					</a>
+				</div>
+			</form>
+{% endblock %}

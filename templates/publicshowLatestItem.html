@@ -1,0 +1,44 @@
+<!--places the publicshowLatestItem.html in the main.html + adds the header.html to the file-->
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+
+<!--similar to publichome, you are just able to see the relevant information without being able to add, edit or delete any items-->
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-md-12 text-center">
+				<h3>
+					Category creator: {{creator.name}}
+				</h3>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr size = 6 id = "ruler">
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-12 text-center">
+				<div>
+					<h1>
+						{{ find_category.category }}
+					</h1>
+				</div>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr size = 6 id = "ruler">
+			</div>
+		</div>
+		<div class = "row">
+				<div class="col-md-12 text-center">		
+					{% for i in find_item %}
+						<h3>{{i.name}}</h3>
+						<p>{{i.description}}</p>
+						<p class="menu-price">{{i.price}}</p>
+					{% endfor %}
+				</div>
+		</div>
+	</div>
+{% endblock %}

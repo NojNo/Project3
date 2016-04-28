@@ -1,0 +1,39 @@
+<!--places the publichome.html in the main.html + adds the header.html to the file-->
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<!--this is the public home-site. you dont have the opportunity to add/edit/delete any categories.-->
+<div class = "container">
+	<div class="row">
+		<div class = "col-md-12" id = "differentfont">
+			<h2 class = "text-center">
+				Hello and welcome to my categories
+			</h2>
+		</div>
+	</div>
+	<div class ="row">
+		<div class = "col-md-12">
+			<h3 class = "text-center">
+				You want to receive further information? Just click on one of the Categories below :)
+			</h3>
+		</div>
+	</div>
+		{% for found_one_category in find_category %}
+			<a href = "{{url_for('showLatestItem', category_id = found_one_category.id)}}">
+				<div class = "row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+					<div class = "results">
+						<h3>
+							{{found_one_category.category}}
+						</h3>
+					</div>
+				</div>
+				<div class="col-md-4">
+				</div>
+				</div>
+			</a>
+		{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!--places the deleteLatestItem.html in the main.html + adds the header.html to the file-->
+
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+<h2> Are you sure you want to delete {{find_item.name}}? </h2>
+
+<form action="#" method = 'post'>
+<!--delete or cancal button-->
+	<a href = '{{url_for('home')}}'>
+		<button type="submit" class="btn btn-default delete" id="submit" type="submit">
+		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+	</a>
+	<a href = '{{url_for('home')}}'>
+		<button type="button" class="btn btn-default delete">
+		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+	</a>
+
+</form>
+
+{% endblock %}

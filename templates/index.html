@@ -1,0 +1,99 @@
+<!--here you can see the independent login page.-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <!--here we have the previously made imports like the font style-->
+    <meta http-equiv="X-UA-Compatible" content = "IE-edge">
+    <meta name = "viewport" content = "width = device-width, initial-scale=1">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Signika:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel= "stylesheet" src='//necolas.github.io/normalize.css/4.1.1/normalize.css'>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <!-- include the Google platform library 
+    so that we can create an anonymous function that inserts script into the DOM of login.html-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+    <script src="//apis.google.com/js/platform.js?onload=start"> 
+    </script>
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+  </head>
+	<body>
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-md-12 center-text">
+          <h2>Here you can log in. Please choose your Provider</h2>
+        </div>
+          <!-- GOOGLE PLUS SIGN IN BUTTON-->
+          <!-- creates the actual button and then we use span in order to group a certain amount of elements. here we have different attributes-->
+    		  <div id="signInButton">
+              <span class="g-signin"
+                data-scope="openid email"
+      	  			data-clientid="PLEASE_ADD_YOUR_CLIENT_ID" 
+      	  			data-redirecturi="postmessage"
+      	  			data-accesstype="offline"
+      	  			data-cookiepolicy="single_host_origin"
+                data-callback="signInCallback"
+                data-approvalprompt="force">
+        			</span>
+      		</div>
+            <!-- data-scope -> what google resources we want to access. we check in the google docs for openid´s response. here we see things like profile pictures, emails or username-->
+            <!--data-clientid= here comes my client id from Google Dev Console-->
+            <!--redirecturi=postmessage enables one-time use code flow-->
+            <!--accesstype tells that API can access data, even if USER is off/logged out-->
+            <!--cookiepolicy determines the scope of URIs that can access the cookies - single_host_origin - only applicable if there are no subdomains
+            callback - specify the callback function. if access is granted, this function is called + access token + one time use code is given!!!!!
+            approvalprompt = force -> means user must log in everytime she visits the page: PW and Usnername does not check if user is logged in. Good for debugging but annoying during production of the App-->
+            <!--at this point the code is sent to Google in order to authenticate. However, we need to handle the response which is the one-time-code and the access token. TWe need to send it from the client to the server-->
+
+    		<!-- the .ajax response will be populated inside the following div -->
+        <div id="result"></div>
+      	<script>
+    			// Send the authorization code to the server
+        function signInCallback(authResult) {
+          if (authResult['code']) {
+            // if authResult contains 'code', we know authorization on GOOGLE API server = success + one time use code is present
+            $('#signinButton').attr('style', 'display: none');
+            // Hide the sign-in button now that the user is authorized
+            // with the help of jQuery we do an AJAX call. This sends the one-time-use code Google gave to client on to the server, if the server responds with 200, write a 'login successful' message to the web page and then redirect back to the main home page
+            // gconnect´s method is defined on the server side
+            // but we also pass in the server state token as an argument to verify against cross-site forgery attacks
+            //processData: false = we dont want to process the data into a string
+            // contentType: 'application/octet-stream tells we are sending an arbitrary binary steam of data + charset=utf-8' means its using the Unicode character set
+            // data: authResult['code'] thats the one time use code we are sending to our server!!
+            // if it was a 200 responds (success)- successfull login method + redirect after 4000 msek = 4sek to home with window.location.href = "/home";
+            $.ajax({
+              type: 'POST',
+              // this method calls a url. This method will be defined on the server again
+              url: '/gconnect?state={{STATE}}',
+              processData: false,
+              data: authResult['code'],
+              contentType: 'application/octet-stream; charset=utf-8',
+              success: function(result) {
+                // Handle or verify the server response if necessary.
+                // additional information to display will be placed in the result variable
+                if (result) {
+                  $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+                  setTimeout(function() {
+                    window.location.href = "/home";
+                  }, 1000);
+                } 
+                //handles the error from Google
+                else if (authResult['error']) {
+                  console.log('There was an error: ' + authResult['error']);
+                }
+                // if no response
+                else {
+                  $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                }
+              } 
+            }); 
+          }  
+        }
+    		</script>
+        <!--END GOOGLE PLUS SIGN IN BUTTON -->
+      </div>
+    </div>
+	</body>
+</html>

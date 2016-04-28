@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="90976118893-aoh43k6hh5ehsnnlbp8noclrrjve9rbs.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<body>
+		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+		<script>
+		function onSignIn(googleUser) {
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log('ID Token: ' + id_token)
+			// Useful data for client-side scripts:
+  			var profile = googleUser.getBasicProfile();
+  			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  			console.log('Name: ' + profile.getName());
+  			console.log('Image URL: ' + profile.getImageUrl());
+  			console.log('Email: ' + profile.getEmail());
+  		};
+
+		</script>
+  		<script>
+  		//sign out kommt hier drueber
+  		try:
+  			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'login');
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+  				console.log('Signed in as: ' + xhr.responseText);
+  			<a href="{{url_for('home')}}">AA</a>
+			};
+			xhr.send('idtoken=' + id_token);
+		else:
+			<br>"Haaaah fail! No login possible"</br>
+
+		</script>
+
+
+	</body>
+</html>

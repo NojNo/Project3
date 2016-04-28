@@ -1,0 +1,81 @@
+<!--places the showLatestItem.html in the main.html + adds the header.html to the file-->
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+<!--as you are now logged in, you might have the opportunity to edit/delete a category, edit/delete an item of add a new item in here. 
+In order to apply one of these usecases, you need to be the creator of the category-->
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-md-12 text-center">
+				<h3>
+					Category creator: {{creator.name}}
+				</h3>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr size = 6 id = "ruler">
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-6">
+				<div>
+					<h1>
+						{{ find_category.category }}
+					</h1>
+				</div>
+			</div>
+			<div class = "row">
+				<!--Edit button for category-->
+				<div class = "col-md-6 text-center">
+					<a href="{{url_for('editCategory', category_id = find_category.id )}}">
+						<button class="btn btn-info btn-lg" id="Add_category">
+							<span class="glyphicon glyphicon-pencil" id = "symbol" aria-hidden="true"></span>Edit category´s name
+						</button>
+					</a>
+				</div>
+				<!--Delete button for category-->
+				<div class = "col-md-6 text-center">
+					<a href="{{url_for('deleteCategory', category_id = find_category.id )}}">
+						<button class="btn btn-info btn-lg" id="Add_category">
+							<span class="glyphicon glyphicon-trash" id = "symbol" aria-hidden="true"></span>
+							Delete
+						</button>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr size = 6 id = "ruler">
+			</div>
+		</div>
+		<div class = "row">
+				<div class="col-md-12 text-center">		
+					{% for i in find_item %}
+						<h3>{{i.name}}</h3>
+						<p>{{i.description}}</p>
+						<p class="menu-price">{{i.price}}</p>
+						<!--Edit button for item-->
+						<a href='{{url_for('editLatestItem', category_id = find_category.id, latestitem_id= i.id ) }}'>
+							Edit
+						</a> | 
+						<!--Delete button for item-->
+						<a href='{{url_for('deleteLatestItem', category_id = find_category.id, 	latestitem_id= i.id ) }}'>
+							Delete
+						</a>
+					{% endfor %}
+				</div>
+		</div>
+		<!--Add button for item-->
+		<div class = "row">
+			<div class = "col-md-12 text-center">		
+				<a href="{{url_for('newLatestItem', category_id = find_category.id )}}">
+					<button class="btn btn-info btn-lg" id="Add_category">
+						<span class="glyphicon glyphicon-plus" id = "symbol" aria-hidden="true"></span>Add Item
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

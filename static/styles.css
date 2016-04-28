@@ -1,0 +1,45 @@
+/*here you can see the customized styles that were 
+over the scope of bootstrap*/
+.differentfont {
+	font-family: 'Signika', sans-serif;
+}
+
+* {
+
+	color: #00BFFF;
+	background-color: #F8F8F8;
+	text-decoration:none;
+	font-family: 'Lobster', cursive;
+	/*display: flex;*/
+}
+
+.row{
+	line-height: 60px;
+	font-weight: 300;
+}
+
+#Add_category{
+	background-color: #00BFFF;
+	color: #ffcc33;
+}
+
+#symbol{
+	background-color: #00BFFF;
+	color: #ffcc33;
+}
+
+#ruler{
+	color: #ffcc33;
+}
+
+.flashmessage {
+	background-color: #98FB98;
+	width:100%;
+	text-decoration: none;
+
+}
+.flashmessagesh li {
+	list-style-type: none;
+	text-align: center;
+
+}

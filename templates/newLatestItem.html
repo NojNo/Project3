@@ -1,0 +1,31 @@
+<!--places the newLatestItem.html in the main.html + adds the header.html to the file-->
+{% include "header.html" %}
+{% extends "main.html" %}
+{% block content %}
+<!--here you can add a new item to a category that you are the owner of. the relevant information that this form needs are: item´s name, category and price. then just confirm it with the create a new item button -->
+<div class = "container">
+	<h1>New Item in the Category</h1>
+		<form action="#" method = "post">
+			<div>
+				<label for="name">Name:</label>
+				<input type ="text" maxlength="50" class="form-control" name="typed_name"placeholder="Name of the item">
+
+				<label for="description">Description:</label>
+				<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item"></textarea>
+
+				<label for="price">Price in $:</label>
+				<input type ="text" class="form-control" maxlength="10" name="price" placeholder="Price in $">
+				<div class = "row">
+					<!--The create button-->
+					<div class = "col-md-12 text-right">
+					<p></p>
+					<button type="submit" class="btn btn-info btn-lg" id="Add_category" type="submit">  
+						<span class="glyphicon glyphicon-send" id="Add_category" aria-hidden="true"></span>
+					Create a new item</button>
+					</div>
+				</div>			
+			</div>
+		</form>
+
+{% endblock %}
+</div>

@@ -1,0 +1,23 @@
+<!--in Flask you always need a container, a row and a column with some attributes such as md-12 that is why you see all those containers, rows and col classes-->
+<div class = "container">
+	<div class = "row">
+			<div class="col-md-6" id = "test">
+				<!--here you can see the home button which leads to the home page-->
+				<a href="{{url_for('home')}}">
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home Sweet Home
+				</a>
+			</div>
+		<!--here you can see the button which enables to login or out-->
+		<div class="col-md-6 text-right">
+				{%if 'username' not in session%}
+			<a href = "{{url_for('login')}}"> 
+				Click here to Log in 
+			</a>
+			{% else %}
+			<a href = "{{url_for('disconnect')}}">
+				Disconnect
+			</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
