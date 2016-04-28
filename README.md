@@ -88,7 +88,7 @@ catalog/
 		├── publicshowLatestItem.py
 		└── showLatestItem.py
 
-If you run application.py(is the client-program), you will access the other files. Here it is important that you do not change the position of the files and folders.
+If you run application.py(server-side code), you will access the other files. Here it is important that you do not change the position of the files and folders.
 
 Bugs and feature requests
 I have not found any. If you do so, please contact me!
