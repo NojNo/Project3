@@ -1,4 +1,4 @@
-﻿Category Item Project Version 1.0 created on 28.04.2016
+﻿Category Item Project Version 1.1 created on 01.05.2016
 
 General Usage: 
 - there are 3 usertypes: logged out visitor, logged in visitor and the owner
@@ -100,4 +100,4 @@ Name: Udacity
 Email: review-support@udacity.com
 
 Licence and Copyright
-All rights reserved by Udacity Inc and Nojan Nourbakhsh. Category Item Project Version 1.0 and its use are subject to a licence agreement and are also subject to copyright, trademark, patent and/or other laws. For further infos, please contact Nojan Nourbakhsh.
+All rights reserved by Udacity Inc and Nojan Nourbakhsh. Category Item Project Version 1.1 and its use are subject to a licence agreement and are also subject to copyright, trademark, patent and/or other laws. For further infos, please contact Nojan Nourbakhsh.
